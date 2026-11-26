@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Reem Kufi", "Tajawal", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+
+  --color-paper: #f5f1ea;
+  --color-linen: #eae3d8;
+  --color-chalk: #fffdf8;
+  --color-ink: #1f2326;
+  --color-body: #4a443c;
+  --color-sage-deep: #24403d;
+  --color-sage: #3e6660;
+  --color-mist: #dde5e1;
+}
+
+html { scroll-behavior: smooth; text-rendering: optimizeLegibility; -webkit-text-size-adjust: 100%; }
+
+/* مسطرة قياس: علامات صغيرة كل 8px وكبيرة كل 40px */
+.ruler {
+  height: 16px;
+  background-image:
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 40px);
+  background-size: 100% 7px, 100% 16px;
+  background-repeat: no-repeat;
+  background-position: top left, top left;
+}
+.ruler-v {
+  width: 16px;
+  background-image:
+    repeating-linear-gradient(0deg, currentColor 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(0deg, currentColor 0 1px, transparent 1px 40px);
+  background-size: 7px 100%, 16px 100%;
+  background-repeat: no-repeat;
+  background-position: left top, left top;
+}
+
+@keyframes ruler-in { from { clip-path: inset(0 0 0 100%); } }
+@keyframes rise { from { opacity: 0; transform: translateY(1.4rem); } }
+@keyframes settle { from { opacity: 0; transform: translateY(2rem) rotate(-1.5deg); } }
+
+.anim-ruler { animation: ruler-in 1.6s cubic-bezier(0.65, 0, 0.25, 1) 0.1s backwards; }
+.anim-rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.anim-settle { animation: settle 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s backwards; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+input[type="range"] { accent-color: #cfe0da; height: 2rem; width: 100%; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .anim-ruler, .anim-rise, .anim-settle { animation: none; }
+}
